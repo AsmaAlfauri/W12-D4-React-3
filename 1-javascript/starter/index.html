@@ -16,18 +16,27 @@
     // Create a post object with an id and title that is frozen
     // Test whether you can reassign each of the variables
     // Log out each of the variables to the page
-
-
+    const username='Asma';
+    let loggedIn='Loggin';
+    let post={
+      id:1,
+      title:'frozen'
+    };
+    
+    Object.freeze(post);
+    console.log(username)
+    console.log(loggedIn)
+    console.log(post);
 
     // Practice 2 - Template Literals
     // Create a variable for firstName and lastName
     // Create a variable called message that can be reassigned
     // Use a template literal to create message like "Hi firstName lastName!"
     // Log out the message to the console
-    const firstName = "";
-    const lastName = ""
+    const firstName = "Asma";
+    const lastName = "Alfauri"
 
-    let message = ``;
+    let message = `Hi ${firstName} ${lastName}`;
 
     console.log(message);
 
@@ -37,12 +46,11 @@
     // Name the arrow function ArrowName
     // Log the value of ArrowName passing in your name as a parameter
 
-    function MyName(name) {
-      return (
-        `<p>${name}<p>`
-      )
+     MyName=(name)=> {
+       return `<p>${name}<p>`
     }
 
+    console.log(MyName('Asma'))
 
 
     // Practice 4 - .filter() and .map()
@@ -65,6 +73,14 @@
       }
     ];
 
+    let Myword='post'
+    let filteredPost=posts.filter(x=>{
+      return x.title.includes(Myword)
+    }
+    )
+    console.log(filteredPost)
+    filteredPost = filteredPost.map(elem => elem.title);
+    console.log(filteredPost)
 
 
     // Practice 5 - DOM Creation
@@ -72,6 +88,9 @@
     // User document.createElement and document.createTextNode 
     //  to create an h2 with a link and the title of the post
     // Append each of the h2s to the postsContainer
+
+    // <h2><a href={slug} >title</a></h2>
+    
     const postsContainer = document.getElementById("root");
     const postsArray = [
       {
@@ -91,6 +110,17 @@
       }
     ];
 
+    postsArray.map(obj => {
+      const h2 = document.createElement('h2'); // <h2></h2>
+      const a = document.createElement('a'); //<a></a>
+      const title = document.createTextNode(obj.title); // Title
+      const link = obj.slug;
+      a.href = link; // <a href=lug></a>
+      a.append(title);  // <a href=lug> title</a>
+      h2.appendChild(a); // <h2><a href=slug>title</a></h2>
+      postsContainer.appendChild(h2);
+    })
+    
 
   </script>
 </body>
